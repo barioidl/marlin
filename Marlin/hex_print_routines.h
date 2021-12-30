@@ -1,6 +1,6 @@
 /**
  * Marlin 3D Printer Firmware
- * Copyright (C) 2016, 2017 MarlinFirmware [https://github.com/MarlinFirmware/Marlin]
+ * Copyright (C) 2016 MarlinFirmware [https://github.com/MarlinFirmware/Marlin]
  *
  * Based on Sprinter and grbl.
  * Copyright (C) 2011 Camiel Gubbels / Erik van der Zalm
@@ -20,19 +20,25 @@
  *
  */
 
-#ifndef _BITMAP_FLAGS_H_
-#define _BITMAP_FLAGS_H_
+#ifndef HEX_PRINT_ROUTINES_H
+#define HEX_PRINT_ROUTINES_H
 
-#include "macros.h"
+#include <stdint.h>
 
-/**
- * These support functions allow the use of large bit arrays of flags that take very
- * little RAM. Currently they are limited to being 16x16 in size. Changing the declaration
- * to unsigned long will allow us to go to 32x32 if higher resolution meshes are needed
- * in the future.
- */
-FORCE_INLINE void bitmap_clear(uint16_t bits[16], const uint8_t x, const uint8_t y) { CBI(bits[y], x); }
-FORCE_INLINE void bitmap_set(uint16_t bits[16], const uint8_t x, const uint8_t y) { SBI(bits[y], x); }
-FORCE_INLINE bool is_bitmap_set(uint16_t bits[16], const uint8_t x, const uint8_t y) { return TEST(bits[y], x); }
+//
+// Utility functions to create and print hex strings as nybble, byte, and word.
+//
 
-#endif // _BITMAP_FLAGS_H_
+inline char hex_nybble(const uint8_t n) {
+  return (n & 0xF) + ((n & 0xF) < 10 ? '0' : 'A' - 10);
+}
+char* hex_byte(const uint8_t b);
+char* hex_word(const uint16_t w);
+char* hex_address(const void * const w);
+
+void print_hex_nybble(const uint8_t n);
+void print_hex_byte(const uint8_t b);
+void print_hex_word(const uint16_t w);
+void print_hex_address(const void * const w);
+
+#endif // HEX_PRINT_ROUTINES_H

@@ -1,6 +1,6 @@
 /**
  * Marlin 3D Printer Firmware
- * Copyright (C) 2016, 2017 MarlinFirmware [https://github.com/MarlinFirmware/Marlin]
+ * Copyright (C) 2016 MarlinFirmware [https://github.com/MarlinFirmware/Marlin]
  *
  * Based on Sprinter and grbl.
  * Copyright (C) 2011 Camiel Gubbels / Erik van der Zalm
@@ -20,19 +20,21 @@
  *
  */
 
-#ifndef _BITMAP_FLAGS_H_
-#define _BITMAP_FLAGS_H_
-
-#include "macros.h"
-
 /**
- * These support functions allow the use of large bit arrays of flags that take very
- * little RAM. Currently they are limited to being 16x16 in size. Changing the declaration
- * to unsigned long will allow us to go to 32x32 if higher resolution meshes are needed
- * in the future.
+ * emergency_parser.cpp - Intercept special commands directly in the serial stream
  */
-FORCE_INLINE void bitmap_clear(uint16_t bits[16], const uint8_t x, const uint8_t y) { CBI(bits[y], x); }
-FORCE_INLINE void bitmap_set(uint16_t bits[16], const uint8_t x, const uint8_t y) { SBI(bits[y], x); }
-FORCE_INLINE bool is_bitmap_set(uint16_t bits[16], const uint8_t x, const uint8_t y) { return TEST(bits[y], x); }
 
-#endif // _BITMAP_FLAGS_H_
+#include "MarlinConfig.h"
+
+#if ENABLED(EMERGENCY_PARSER)
+
+#include "emergency_parser.h"
+
+// Static data members
+bool EmergencyParser::killed_by_M112; // = false
+EmergencyParser::State EmergencyParser::state; // = EP_RESET
+
+// Global instance
+EmergencyParser emergency_parser;
+
+#endif // EMERGENCY_PARSER
