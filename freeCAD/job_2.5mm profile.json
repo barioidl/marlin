@@ -1,0 +1,58 @@
+{
+  "Fixtures": [
+    {
+      "G54": true
+    }
+  ],
+  "OrderOutputBy": "Operation",
+  "SetupSheet": {
+    "ClearanceHeightExpression": "OpStockZMax+${SetupSheet}.ClearanceHeightOffset",
+    "ClearanceHeightOffset": "2.00 mm",
+    "HorizRapid": "2.00 mm/s",
+    "SafeHeightExpression": "OpStockZMax+${SetupSheet}.SafeHeightOffset",
+    "SafeHeightOffset": "1.00 mm",
+    "VertRapid": "2.00 mm/s"
+  },
+  "SplitOutput": false,
+  "Tolerance": "0.01",
+  "ToolController": [
+    {
+      "dir": "Forward",
+      "hfeed": "0.0 mm/s",
+      "hrapid": "2.0 mm/s",
+      "label": "2.5mm_Endmill003",
+      "name": "__5mm_Endmill002",
+      "nr": 1,
+      "speed": 0.0,
+      "tool": {
+        "attribute": {},
+        "name": "2.5mm_Endmill002",
+        "parameter": {
+          "Chipload": "2.00 mm",
+          "CuttingEdgeHeight": "10.00 mm",
+          "Diameter": "2.50 mm",
+          "Flutes": "3",
+          "Length": "30.00 mm",
+          "Material": "HSS",
+          "ShankDiameter": "3.00 mm"
+        },
+        "shape": "E:/portable/FreeCAD 0.19/Mod/Path/Tools/Shape/endmill.fcstd",
+        "version": 2
+      },
+      "version": 1,
+      "vfeed": "0.0 mm/s",
+      "vrapid": "2.0 mm/s",
+      "xengine": [
+        {
+          "expr": "${SetupSheet}.HorizRapid",
+          "prop": "HorizRapid"
+        },
+        {
+          "expr": "${SetupSheet}.VertRapid",
+          "prop": "VertRapid"
+        }
+      ]
+    }
+  ],
+  "Version": 1
+}

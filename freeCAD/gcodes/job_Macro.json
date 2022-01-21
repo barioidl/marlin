@@ -1,0 +1,74 @@
+{
+  "Fixtures": [
+    {
+      "G54": true
+    }
+  ],
+  "OrderOutputBy": "Operation",
+  "Output": "C:/Users/BarioisDerplord/Documents/freeCAD/gcodes/x slider2.nc",
+  "Post": "grbl",
+  "PostArgs": "",
+  "SetupSheet": {
+    "ClearanceHeightExpression": "OpStockZMax+${SetupSheet}.ClearanceHeightOffset",
+    "ClearanceHeightOffset": "1.00 mm",
+    "HorizRapid": "1.00 mm/s",
+    "Profile": {
+      "HandleMultipleFeatures": "Individually"
+    },
+    "SafeHeightExpression": "OpStockZMax+${SetupSheet}.SafeHeightOffset",
+    "SafeHeightOffset": "2.00 mm",
+    "VertRapid": "1.00 mm/s"
+  },
+  "SplitOutput": false,
+  "Stock": {
+    "create": "FromBase",
+    "version": 1,
+    "xneg": "1.0 mm",
+    "xpos": "1.0 mm",
+    "yneg": "1.0 mm",
+    "ypos": "1.0 mm",
+    "zneg": "0.0 mm",
+    "zpos": "1.0 mm"
+  },
+  "Tolerance": "0.01",
+  "ToolController": [
+    {
+      "dir": "Forward",
+      "hfeed": "0.5 mm/s",
+      "hrapid": "1.0 mm/s",
+      "label": "2mm Endmill001",
+      "name": "_mm_Endmill",
+      "nr": 1,
+      "speed": 100.0,
+      "tool": {
+        "attribute": {},
+        "name": "2mm Endmill",
+        "parameter": {
+          "Chipload": "1.00 mm",
+          "CuttingEdgeHeight": "5.00 mm",
+          "Diameter": "2.00 mm",
+          "Flutes": "3",
+          "Length": "30.00 mm",
+          "Material": "HSS",
+          "ShankDiameter": "3.00 mm"
+        },
+        "shape": "endmill.fcstd",
+        "version": 2
+      },
+      "version": 1,
+      "vfeed": "0.5 mm/s",
+      "vrapid": "1.0 mm/s",
+      "xengine": [
+        {
+          "expr": "${SetupSheet}.HorizRapid",
+          "prop": "HorizRapid"
+        },
+        {
+          "expr": "${SetupSheet}.VertRapid",
+          "prop": "VertRapid"
+        }
+      ]
+    }
+  ],
+  "Version": 1
+}
